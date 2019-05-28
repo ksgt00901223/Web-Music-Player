@@ -9,14 +9,15 @@
   <body>
     <div id="app">
       <h3>{{ title }}</h3>
-      <audio
-        controls="controls"
-        :src="audioSrc"
-        width="300"
-        height="100"
-      >
+      <audio controls="controls" :src="audioSrc" width="300" height="100">
         浏览器不支持
       </audio>
+      <audio
+        controls="controls"
+        width="300"
+        height="100"
+        src="http://ksgt00901223.gitee.io/jaynovember_chopin/%E8%AF%B4%E8%B5%B0%E5%B0%B1%E8%B5%B0.mp3"
+      ></audio>
       <ul>
         <li
           v-for="(item, index) in list"
