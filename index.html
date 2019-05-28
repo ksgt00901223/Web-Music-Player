@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h3>{{ title }}</h3>
+      <audio
+        controls="controls"
+        :src="audioSrc"
+        width="300"
+        height="100"
+      >
+        浏览器不支持
+      </audio>
+      <ul>
+        <li
+          v-for="(item, index) in list"
+          :key="index"
+          @click="setAudioSrc(item)"
+        >
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          title: '一点点.mp3',
+          list: [
+            '一点点.mp3',
+            '晴天.mp3',
+            '告白气球.flac',
+            '周杰伦 - 甜甜的.mp3'
+          ]
+        },
+        computed: {
+          audioSrc() {
+            return `./src/music/jay/${this.title}`
+          }
+        },
+        methods: {
+          setAudioSrc(val) {
+            this.title = val
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
