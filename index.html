@@ -9,15 +9,23 @@
   <body>
     <div id="app">
       <h3>{{ title }}</h3>
-      <audio controls="controls" :src="audioSrc" width="300" height="100">
+      <audio
+        controls="controls"
+        ref="audio"
+        :src="audioSrc"
+        width="300"
+        height="100"
+        autoplay="autoplay"
+        id="audio"
+      >
         浏览器不支持
       </audio>
-      <audio
+      <!-- <audio
         controls="controls"
         width="300"
         height="100"
         src="http://ksgt00901223.gitee.io/jaynovember_chopin/%E8%AF%B4%E8%B5%B0%E5%B0%B1%E8%B5%B0.mp3"
-      ></audio>
+      ></audio> -->
       <ul>
         <li
           v-for="(item, index) in list"
@@ -39,16 +47,41 @@
             '晴天.mp3',
             '告白气球.flac',
             '周杰伦 - 甜甜的.mp3'
-          ]
+          ],
+          ended:null
         },
         computed: {
           audioSrc() {
             return `./src/music/jay/${this.title}`
           }
         },
+        watch:{
+          ended(val,old){
+            console.log('遍历');
+            
+          }
+        },
+        mounted(){
+          console.log(this.$refs.audio.ended);
+          this.ended = this.$refs.audio.ended
+          this.sss() 
+        },
         methods: {
           setAudioSrc(val) {
             this.title = val
+          },
+          sss() {
+            const audio = document.getElementById('audio')
+            audio.addEventListener(
+              'ended',
+              ()=>{
+                console.log('ollll');
+                this.title=this.list[2]
+                // audio.load()
+                // audio.play()
+              },
+              false
+            )
           }
         }
       })
